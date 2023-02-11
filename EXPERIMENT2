@@ -1,0 +1,133 @@
+@@ -0,0 +1,132 @@
+mysql> create database student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student(Reg_no int(3),Name varchar(15),Gender varchar(1),DOB Date,Mobile_no int(10),city varchar(15) PRIMARY KEY);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Reg_no    | int(3)      | YES  |     | NULL    |       |
+| Name      | varchar(15) | YES  |     | NULL    |       |
+| Gender    | varchar(1)  | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| Mobile_no | int(10)     | YES  |     | NULL    |       |
+| city      | varchar(15) | NO   | PRI | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.03 sec)
+
+mysql> create database faculty;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql>  create table faculty(Faculty_no varchar(4) PRIMARY KEY,Faculty_name varchar(15),Gender char(1),DOB Date,DOJ Date,Mobile_no int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc faculty;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Faculty_no   | varchar(4)  | NO   | PRI | NULL    |       |
+| Faculty_name | varchar(15) | YES  |     | NULL    |       |
+| Gender       | char(1)     | YES  |     | NULL    |       |
+| DOB          | date        | YES  |     | NULL    |       |
+| DOJ          | date        | YES  |     | NULL    |       |
+| Mobile_no    | int(10)     | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> create database department;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| department         |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> create table department(Dept_no varchar(4) PRIMARY KEY,Dept_name varchar(15),Dept_head varchar(4));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Dept_no   | varchar(4)  | NO   | PRI | NULL    |       |
+| Dept_name | varchar(15) | YES  |     | NULL    |       |
+| Dept_head | varchar(4)  | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create database course;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| department         |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql>  create table course(Course_no varchar(3) PRIMARY KEY,Course_desc varchar(14),Course_type char(1),Sem_no char(1),Hall_no varchar(4),Faculty_no varchar(4));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc course;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Course_no   | varchar(3)  | NO   | PRI | NULL    |       |
+| Course_desc | varchar(14) | YES  |     | NULL    |       |
+| Course_type | char(1)     | YES  |     | NULL    |       |
+| Sem_no      | char(1)     | YES  |     | NULL    |       |
+| Hall_no     | varchar(4)  | YES  |     | NULL    |       |
+| Faculty_no  | varchar(4)  | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
