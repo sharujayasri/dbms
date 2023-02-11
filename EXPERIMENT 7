@@ -1,0 +1,181 @@
+#Create database student:
+
+
+mysql> create database student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql>  create table student(S_no int(2),Stud_name varchar(15),Stud_reg varchar(15),Course_no varchar(10),Marks int(3),Fact_no varchar(10),Asignment_sub int(3));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| S_no          | int(2)      | YES  |     | NULL    |       |
+| Stud_name     | varchar(15) | YES  |     | NULL    |       |
+| Stud_reg      | varchar(15) | YES  |     | NULL    |       |
+| Course_no     | varchar(10) | YES  |     | NULL    |       |
+| Marks         | int(3)      | YES  |     | NULL    |       |
+| Fact_no       | varchar(10) | YES  |     | NULL    |       |
+| Asignment_sub | int(3)      | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql>  insert into student value(1,'vishwa',192221043,'C003',74,2031,2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into student value(2,'varshika',192225002,'C008',97,1702,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into student value(3,'rohan',192224057,'C182',99,0703,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(4,'hari',192221045,'C790',87,7090,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from student;
++------+-----------+-----------+-----------+-------+---------+---------------+
+| S_no | Stud_name | Stud_reg  | Course_no | Marks | Fact_no | Asignment_sub |
++------+-----------+-----------+-----------+-------+---------+---------------+
+|    1 | vishwa    | 192221043 | C003      |    74 | 2031    |             2 |
+|    2 | varshika  | 192225002 | C008      |    97 | 1702    |             3 |
+|    3 | rohan     | 192224057 | C182      |    99 | 703     |             1 |
+|    4 | hari      | 192221045 | C790      |    87 | 7090    |             3 |
++------+-----------+-----------+-----------+-------+---------+---------------+
+4 rows in set (0.00 sec)
+
+
+#Maximum marks:
+
+mysql> select stud_reg,Stud_name, Marks from student where Marks = (select MAX(HIGH_SCORE) from (select Stud_reg,Stud_name, MAX(Marks) as HIGH_SCORE from student ORDER BY HIGH_SCORE)as HIGH_SCORER );
++-----------+-----------+-------+
+| stud_reg  | Stud_name | Marks |
++-----------+-----------+-------+
+| 192224057 | rohan     |    99 |
++-----------+-----------+-------+
+1 row in set (0.00 sec)
+
+
+#More than one assignment:
+
+mysql> select Stud_name from student where Asignment_sub>1;
++-----------+
+| Stud_name |
++-----------+
+| vishwa    |
+| varshika  |
+| hari      |
++-----------+
+3 rows in set (0.00 sec)
+
+
+#Create database faculty:
+
+mysql> create database faculty;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> use faculty;
+Database changed
+mysql> create table faculty(S_no int(1),Fact_name varchar(15),Fact_id varchar(15),Gender char(1),Dept char(15),Age int(2),DOB Date,DOJ Date,Mobile_no varchar(15));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc faculty;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Fact_name | varchar(15) | YES  |     | NULL    |       |
+| Fact_id   | varchar(15) | YES  |     | NULL    |       |
+| Gender    | char(1)     | YES  |     | NULL    |       |
+| Dept      | char(15)    | YES  |     | NULL    |       |
+| Age       | int(2)      | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+9 rows in set (0.02 sec)
+
+mysql>  insert into faculty value(1,'kavitha',7023,'F','PHYSICS',23,'2000-02-02','2021-08-20',8076030576);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty value(2,'Lokesh',5079,'M','ETHICS',28,'1994-08-12','2019-05-31',6381786811);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty value(3,'Murphy',4308,'M','CHEMISTRY',30,'1992-08-24','2018-04-09',9597220453);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty value(4,'Seetha',1925,'F','MATHS',36,'1886-12-03','2016-03-21',9944457361);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from faculty;
++------+-----------+---------+--------+-----------+------+------------+------------+------------+
+| S_no | Fact_name | Fact_id | Gender | Dept      | Age  | DOB        | DOJ        | Mobile_no  |
++------+-----------+---------+--------+-----------+------+------------+------------+------------+
+|    1 | kavitha   | 7023    | F      | PHYSICS   |   23 | 2000-02-02 | 2021-08-20 | 8076030576 |
+|    2 | Lokesh    | 5079    | M      | ETHICS    |   28 | 1994-08-12 | 2019-05-31 | 6381786811 |
+|    3 | Murphy    | 4308    | M      | CHEMISTRY |   30 | 1992-08-24 | 2018-04-09 | 9597220453 |
+|    4 | Seetha    | 1925    | F      | MATHS     |   36 | 1886-12-03 | 2016-03-21 | 9944457361 |
++------+-----------+---------+--------+-----------+------+------------+------------+------------+
+4 rows in set (0.00 sec)
+
+
+#Maximum date of joined:
+
+mysql> SELECT * from faculty where DOJ = (select MAX(DOJ) from faculty);
++------+-----------+---------+--------+---------+------+------------+------------+------------+
+| S_no | Fact_name | Fact_id | Gender | Dept    | Age  | DOB        | DOJ        | Mobile_no  |
++------+-----------+---------+--------+---------+------+------------+------------+------------+
+|    1 | kavitha   | 7023    | F      | PHYSICS |   23 | 2000-02-02 | 2021-08-20 | 8076030576 |
++------+-----------+---------+--------+---------+------+------------+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++------+-----------+-----------+-----------+-------+---------+---------------+
+| S_no | Stud_name | Stud_reg  | Course_no | Marks | Fact_no | Asignment_sub |
++------+-----------+-----------+-----------+-------+---------+---------------+
+|    1 | vishwa    | 192221043 | C003      |    74 | 2031    |             2 |
+|    2 | varshika  | 192225002 | C008      |    97 | 1702    |             3 |
+|    3 | rohan     | 192224057 | C182      |    99 | 703     |             1 |
+|    4 | hari      | 192221045 | C790      |    87 | 7090    |             3 |
++------+-----------+-----------+-----------+-------+---------+---------------+
+4 rows in set (0.00 sec)
+
+
+#Average score of course:
+
+mysql> select Course_no,Marks,AVG(Marks) from student where Marks > (select AVG(Marks) from student);
++-----------+-------+------------+
+| Course_no | Marks | AVG(Marks) |
++-----------+-------+------------+
+| C008      |    97 |    98.0000 |
++-----------+-------+------------+
+1 row in set (0.00 sec)
