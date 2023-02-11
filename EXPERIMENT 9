@@ -1,0 +1,90 @@
+create database student:
+
+
+mysql> create database student;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student(S_no int(1),Stud_name varchar(10),Stud_reg varchar(10),Gender char(1),DOB Date,Native varchar(15),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Stud_name | varchar(10) | YES  |     | NULL    |       |
+| Stud_reg  | varchar(10) | YES  |     | NULL    |       |
+| Gender    | char(1)     | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| Native    | varchar(15) | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into student value(1,'vishwa',192221043,'M','2004-09-12','Tiruvannamalai',9372467930);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(2,'varshika',192225002,'F','2003-05-07','chennai',8562748594);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(3,'sakthi',192221047,'F','2005-09-12','tirupur',7906458904);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into student value(4,'madhan',192221042,'M','2005-03-06','kallakuruchi',8907378902);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from student;
++------+-----------+-----------+--------+------------+----------------+------------+
+| S_no | Stud_name | Stud_reg  | Gender | DOB        | Native         | Mobile_no  |
++------+-----------+-----------+--------+------------+----------------+------------+
+|    1 | vishwa    | 192221043 | M      | 2004-09-12 | Tiruvannamalai | 9372467930 |
+|    2 | varshika  | 192225002 | F      | 2003-05-07 | chennai        | 8562748594 |
+|    3 | sakthi    | 192221047 | F      | 2005-09-12 | tirupur        | 7906458904 |
+|    4 | madhan    | 192221042 | M      | 2005-03-06 | kallakuruchi   | 8907378902 |
++------+-----------+-----------+--------+------------+----------------+------------+
+4 rows in set (0.00 sec)
+
+
+#Student view:
+
+mysql> create view stu_view as select Stud_reg,Stud_name,DOB from student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from stu_view;
++-----------+-----------+------------+
+| Stud_reg  | Stud_name | DOB        |
++-----------+-----------+------------+
+| 192221043 | vishwa    | 2004-09-12 |
+| 192225002 | varshika  | 2003-05-07 |
+| 192221047 | sakthi    | 2005-09-12 |
+| 192221042 | madhan    | 2005-03-06 |
++-----------+-----------+------------+
+4 rows in set (0.00 sec)
+
+#Student index:
+
+mysql> create index Stud_reg on student(Stud_reg);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from student;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| student |          1 | Stud_reg |            1 | Stud_reg    | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
