@@ -1,0 +1,90 @@
+#Create database student:
+
+
+mysql> create database student;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+mysql> create table class(S_no int(2),class_room int(5),class_name varchar(15),no_of_students int(15));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc class;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| S_no           | int(2)      | YES  |     | NULL    |       |
+| class_room     | int(5)      | YES  |     | NULL    |       |
+| class_name     | varchar(15) | YES  |     | NULL    |       |
+| no_of_students | int(15)     | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into class value(1,20,'java',15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into class value(2,30,'dbms',20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into class value(3,40,'python',25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class value(4,50,'c pro',30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into class value(5,60,'r pro',35);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into class value(6,70,'networks',40);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> savepoint b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into class value(7,80,'error',45);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from class;
++------+------------+------------+----------------+
+| S_no | class_room | class_name | no_of_students |
++------+------------+------------+----------------+
+|    1 |         20 | java       |             15 |
+|    2 |         30 | dbms       |             20 |
+|    3 |         40 | python     |             25 |
+|    4 |         50 | c pro      |             30 |
+|    5 |         60 | r pro      |             35 |
+|    6 |         70 | networks   |             40 |
+|    7 |         80 | error      |             45 |
++------+------------+------------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> rollback to savepoint b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from class;
++------+------------+------------+----------------+
+| S_no | class_room | class_name | no_of_students |
++------+------------+------------+----------------+
+|    1 |         20 | java       |             15 |
+|    2 |         30 | dbms       |             20 |
+|    3 |         40 | python     |             25 |
+|    4 |         50 | c pro      |             30 |
+|    5 |         60 | r pro      |             35 |
+|    6 |         70 | networks   |             40 |
++------+------------+------------+----------------+
+6 rows in set (0.00 sec)
