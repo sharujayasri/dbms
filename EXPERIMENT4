@@ -1,0 +1,244 @@
+#Create database student:
+
+
+mysql> create database student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student(S_no int(1),Stud_name varchar(15),Reg_no int(15),Gender char(1),DOB Date);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Stud_name | varchar(15) | YES  |     | NULL    |       |
+| Reg_no    | int(15)     | YES  |     | NULL    |       |
+| Gender    | char(1)     | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> insert into student value(1,'vishwa',192221043,'M','2004-09-12');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student value(2,'sakthi',192221047,'F','2004-11-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(3,'madhan',192221042,'M','2005-03-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(4,'varshika',192225002,'F','2003-08-07');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from student;
++------+-----------+-----------+--------+------------+
+| S_no | Stud_name | Reg_no    | Gender | DOB        |
++------+-----------+-----------+--------+------------+
+|    1 | vishwa    | 192221043 | M      | 2004-09-12 |
+|    2 | sakthi    | 192221047 | F      | 2004-11-05 |
+|    3 | madhan    | 192221042 | M      | 2005-03-03 |
+|    4 | varshika  | 192225002 | F      | 2003-08-07 |
++------+-----------+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+
+#List of Female students:
+
+mysql> select *from student where gender='F';
++------+-----------+-----------+--------+------------+
+| S_no | Stud_name | Reg_no    | Gender | DOB        |
++------+-----------+-----------+--------+------------+
+|    2 | sakthi    | 192221047 | F      | 2004-11-05 |
+|    4 | varshika  | 192225002 | F      | 2003-08-07 |
++------+-----------+-----------+--------+------------+
+2 rows in set (0.00 sec)
+
+
+#Create database course:
+
+mysql> create database course;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use course;
+Database changed
+mysql> create table course(S_no int(1),Stud_name varchar(15),Reg_no int(15),Gender char(1),Course_no varchar(10),DOB Date);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc course;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Stud_name | varchar(15) | YES  |     | NULL    |       |
+| Reg_no    | int(15)     | YES  |     | NULL    |       |
+| Gender    | char(1)     | YES  |     | NULL    |       |
+| Course_no | varchar(10) | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> insert into course value(1,'vishwa',192221043,'M','C002','2004-09-12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course value(2,'sakthi',192221047,'F','C001','2004-11-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course value(3,'madhan',192221042,'M','C002','2005-03-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course value(4,'varshika',192225002,'F','C001','2003-08-07');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from course;
++------+-----------+-----------+--------+-----------+------------+
+| S_no | Stud_name | Reg_no    | Gender | Course_no | DOB        |
++------+-----------+-----------+--------+-----------+------------+
+|    1 | vishwa    | 192221043 | M      | C002      | 2004-09-12 |
+|    2 | sakthi    | 192221047 | F      | C001      | 2004-11-05 |
+|    3 | madhan    | 192221042 | M      | C002      | 2005-03-03 |
+|    4 | varshika  | 192225002 | F      | C001      | 2003-08-07 |
++------+-----------+-----------+--------+-----------+------------+
+4 rows in set (0.00 sec)
+
+
+#Select the course no with C001;
+
+mysql> select *from course where Course_no='C001';
++------+-----------+-----------+--------+-----------+------------+
+| S_no | Stud_name | Reg_no    | Gender | Course_no | DOB        |
++------+-----------+-----------+--------+-----------+------------+
+|    2 | sakthi    | 192221047 | F      | C001      | 2004-11-05 |
+|    4 | varshika  | 192225002 | F      | C001      | 2003-08-07 |
++------+-----------+-----------+--------+-----------+------------+
+2 rows in set (0.00 sec)
+
+
+#Create database faculty:
+
+mysql> create database faculty;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql>  create table faculty(S_no int(1),Fact_name varchar(15),Fact_no varchar(10),DOB Date,DOJ Date,Dept_name varchar(15),Age int(2),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Fact_name | varchar(15) | YES  |     | NULL    |       |
+| Fact_no   | varchar(10) | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
+| Dept_name | varchar(15) | YES  |     | NULL    |       |
+| Age       | int(2)      | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql>  insert into faculty value(1,'murphy',2004,'2000-09-24','2021-08-20','PHYSICS',22,9544353361);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty value(2,'kavitha',2076,'2002-08-22','2022-08-23','PHYSICS',20,7904298170);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into faculty value(3,'lokesh',1786,'1997-03-21','2020-04-23','ETHICS',25,9597100354);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into faculty value(4,'seetha',1502,'1990-05-11','2015-11-18','MATHS',32,9944353163);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from faculty;
++------+-----------+---------+------------+------------+-----------+------+------------+
+| S_no | Fact_name | Fact_no | DOB        | DOJ        | Dept_name | Age  | Mobile_no  |
++------+-----------+---------+------------+------------+-----------+------+------------+
+|    1 | murphy    | 2004    | 2000-09-24 | 2021-08-20 | PHYSICS   |   22 | 9544353361 |
+|    2 | kavitha   | 2076    | 2002-08-22 | 2022-08-23 | PHYSICS   |   20 | 7904298170 |
+|    3 | lokesh    | 1786    | 1997-03-21 | 2020-04-23 | ETHICS    |   25 | 9597100354 |
+|    4 | seetha    | 1502    | 1990-05-11 | 2015-11-18 | MATHS     |   32 | 9944353163 |
++------+-----------+---------+------------+------------+-----------+------+------------+
+4 rows in set (0.00 sec)
+
+
+#Select the faculty;
+
+mysql> select*from faculty where DOJ<"2021-11-01";
++------+-----------+---------+------------+------------+-----------+------+------------+
+| S_no | Fact_name | Fact_no | DOB        | DOJ        | Dept_name | Age  | Mobile_no  |
++------+-----------+---------+------------+------------+-----------+------+------------+
+|    1 | murphy    | 2004    | 2000-09-24 | 2021-08-20 | PHYSICS   |   22 | 9544353361 |
+|    3 | lokesh    | 1786    | 1997-03-21 | 2020-04-23 | ETHICS    |   25 | 9597100354 |
+|    4 | seetha    | 1502    | 1990-05-11 | 2015-11-18 | MATHS     |   32 | 9944353163 |
++------+-----------+---------+------------+------------+-----------+------+------------+
+3 rows in set (0.00 sec)
+
+
+#Student with string "ma":
+
+mysql> use student;
+Database changed
+mysql>  select * from student where Stud_name like'%ma';
+Empty set (0.00 sec)
+
+
+#Student name with six characters:
+
+mysql>  select *from student where char_length(Stud_name) !=6;
++------+-----------+-----------+--------+------------+
+| S_no | Stud_name | Reg_no    | Gender | DOB        |
++------+-----------+-----------+--------+------------+
+|    4 | varshika  | 192225002 | F      | 2003-08-07 |
++------+-----------+-----------+--------+------------+
+1 row in set (0.00 sec)
+
+
+#Student with string "th":
+
+mysql> use faculty;
+Database changed
+mysql> select * from faculty where Fact_name like'%th';
+Empty set (0.00 sec)
