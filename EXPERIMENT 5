@@ -1,0 +1,326 @@
+Create data of course:
+
+
+mysql> create database course;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use course;
+Database changed
+mysql> create table course(S_no int(1),Course_name varchar(15),Course_code varchar(15),Course_creadits int(5),Room_no int(5),Fact_no varchar(15),Course_type varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc course;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| S_no            | int(1)      | YES  |     | NULL    |       |
+| Course_name     | varchar(15) | YES  |     | NULL    |       |
+| Course_code     | varchar(15) | YES  |     | NULL    |       |
+| Course_creadits | int(5)      | YES  |     | NULL    |       |
+| Room_no         | int(5)      | YES  |     | NULL    |       |
+| Fact_no         | varchar(15) | YES  |     | NULL    |       |
+| Course_type     | varchar(20) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql>  insert into course value(1,'Java','CSA0539',8,647,9597100234,'Programming');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course value(2,'Physics','UBA0538',4,512,9944357841,'Statistics');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into course value(3,'Maths','UBA0923','3',544,8945785270,'Statistics');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  insert into course value(4,'DBMS','CSA0538','4',234,9783043592,'Programming');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from course;
++------+-------------+-------------+-----------------+---------+------------+-------------+
+| S_no | Course_name | Course_code | Course_creadits | Room_no | Fact_no    | Course_type |
++------+-------------+-------------+-----------------+---------+------------+-------------+
+|    1 | Java        | CSA0539     |               8 |     647 | 9597100234 | Programming |
+|    2 | Physics     | UBA0538     |               4 |     512 | 9944357841 | Statistics  |
+|    3 | Maths       | UBA0923     |               3 |     544 | 8945785270 | Statistics  |
+|    4 | DBMS        | CSA0538     |               4 |     234 | 9783043592 | Programming |
++------+-------------+-------------+-----------------+---------+------------+-------------+
+4 rows in set (0.00 sec)
+
+
+#Range Between:
+
+
+mysql> create database Course_marks;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course_marks       |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use Course_marks;
+Database changed
+mysql> create table Course_marks(S_no int(2),Reg_no varchar(10),Course_no varchar(10),Marks int(3));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Course_marks;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(2)      | YES  |     | NULL    |       |
+| Reg_no    | varchar(10) | YES  |     | NULL    |       |
+| Course_no | varchar(10) | YES  |     | NULL    |       |
+| Marks     | int(3)      | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into Course_marks value(1,192221042,'C001',78);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(2,192221043,'C008',85);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(3,192221047,'C058',93);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(4,192221046,'C178',91);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_marks value(5,192221047,'C201',65);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from Course_marks;
++------+-----------+-----------+-------+
+| S_no | Reg_no    | Course_no | Marks |
++------+-----------+-----------+-------+
+|    1 | 192221042 | C001      |    78 |
+|    2 | 192221043 | C008      |    85 |
+|    3 | 192221047 | C058      |    93 |
+|    4 | 192221046 | C178      |    91 |
+|    5 | 192221047 | C201      |    65 |
++------+-----------+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>  select Course_no from Course_marks where Marks Between 90 AND 100;
++-----------+
+| Course_no |
++-----------+
+| C058      |
+| C178      |
++-----------+
+2 rows in set (0.00 sec)
+
+
+#Create data of student:
+
+mysql> create database student;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+
+mysql> create table student(S_no int(2),Stud_name varchar(15),Reg_no varchar(15),Course_code varchar(10),Marks int(3));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| S_no        | int(2)      | YES  |     | NULL    |       |
+| Stud_name   | varchar(15) | YES  |     | NULL    |       |
+| Reg_no      | varchar(15) | YES  |     | NULL    |       |
+| Course_code | varchar(10) | YES  |     | NULL    |       |
+| Marks       | int(3)      | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into student value(1,'vishwa',192221043,'UBA0923',89);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(2,'varshika',192225002,'CSA0823',93);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(3,'sakthi',192221047,'BTA0721',90);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(4,'karthi',192221046,'CSA0538',78);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from student;
++------+-----------+-----------+-------------+-------+
+| S_no | Stud_name | Reg_no    | Course_code | Marks |
++------+-----------+-----------+-------------+-------+
+|    1 | vishwa    | 192221043 | UBA0923     |    89 |
+|    2 | varshika  | 192225002 | CSA0823     |    93 |
+|    3 | sakthi    | 192221047 | BTA0721     |    90 |
+|    4 | karthi    | 192221046 | CSA0538     |    78 |
++------+-----------+-----------+-------------+-------+
+4 rows in set (0.00 sec)
+
+
+#Average mark:
+
+mysql> select avg(Marks) from student;
++------------+
+| avg(Marks) |
++------------+
+|    87.5000 |
++------------+
+1 row in set (0.00 sec)
+
+
+#Maximum and Minimum Marks:
+
+mysql> select max(Marks),min(Marks) from student;
++------------+------------+
+| max(Marks) | min(Marks) |
++------------+------------+
+|         93 |         78 |
++------------+------------+
+1 row in set (0.00 sec)
+
+
+#Maximum,Minimum,Average:
+
+mysql> select max(Marks),min(Marks),avg(Marks) from student;
++------------+------------+------------+
+| max(Marks) | min(Marks) | avg(Marks) |
++------------+------------+------------+
+|         93 |         78 |    87.5000 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+#Select average mark:
+
+mysql> select avg(Marks) from student where Course_code like'CSA0538';
++------------+
+| avg(Marks) |
++------------+
+|    78.0000 |
++------------+
+1 row in set (0.00 sec)
+
+
+#sum of marks:
+
+mysql> select sum(Marks) from student;
++------------+
+| sum(Marks) |
++------------+
+|        350 |
++------------+
+1 row in set (0.00 sec)
+
+
+#Maximum registered course:
+
+mysql> use course;
+Database changed
+
+mysql> select Course_name,Count(Course_type) from course;
++-------------+--------------------+
+| Course_name | Count(Course_type) |
++-------------+--------------------+
+| Java        |                  4 |
++-------------+--------------------+
+1 row in set (0.00 sec)
+
+
+#How many students registered:
+
+mysql> create database  Course_reg;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| course             |
+| course_reg         |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use Course_reg;
+Database changed
+mysql> create table Course_reg(S_no int(2),Stud_name varchar(15),Stud_reg varchar(15),Course_name varchar(15),Course_no int(2));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Course_reg;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| S_no        | int(2)      | YES  |     | NULL    |       |
+| Stud_name   | varchar(15) | YES  |     | NULL    |       |
+| Stud_reg    | varchar(15) | YES  |     | NULL    |       |
+| Course_name | varchar(15) | YES  |     | NULL    |       |
+| Course_no   | int(2)      | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> insert into Course_reg value(1,'vishwa',192221043,'JAVA',7);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_reg value(2,'varshika',192225002,'PYTHON',11);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_reg value(3,'sakthi',192221047,'DBMS',4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Course_reg value(4,'annam',192224084,'AGRI',3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from Course_reg;
++------+-----------+-----------+-------------+-----------+
+| S_no | Stud_name | Stud_reg  | Course_name | Course_no |
++------+-----------+-----------+-------------+-----------+
+|    1 | vishwa    | 192221043 | JAVA        |         7 |
+|    2 | varshika  | 192225002 | PYTHON      |        11 |
+|    3 | sakthi    | 192221047 | DBMS        |         4 |
+|    4 | annam     | 192224084 | AGRI        |         3 |
++------+-----------+-----------+-------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select Course_no,Course_name,Count(Stud_reg) from course_reg;
++-----------+-------------+-----------------+
+| Course_no | Course_name | Count(Stud_reg) |
++-----------+-------------+-----------------+
+|         7 | JAVA        |               4 |
++-----------+-------------+-----------------+
+1 row in set (0.00 sec)
