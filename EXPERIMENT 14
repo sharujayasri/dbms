@@ -1,0 +1,116 @@
+#Create database student:
+
+
+mysql> create database student;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student(S_no int(1),Stud_name varchar(10),Stud_reg varchar(10),Gender char(1),Stud_dept varchar(15),Course_no varchar(10),DOB Date,City varchar(20),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Stud_name | varchar(10) | YES  |     | NULL    |       |
+| Stud_reg  | varchar(10) | YES  |     | NULL    |       |
+| Gender    | char(1)     | YES  |     | NULL    |       |
+| Stud_dept | varchar(15) | YES  |     | NULL    |       |
+| Course_no | varchar(10) | YES  |     | NULL    |       |
+| DOB       | date        | YES  |     | NULL    |       |
+| City      | varchar(20) | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+9 rows in set (0.02 sec)
+
+mysql> insert into student value(1,'vishwa',192221043,'M','IT','C003','2004-09-12','Thiruvannamalai',9944537890);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student value(2,'varshika',192225002,'F','AIML','C005','2003-04-07','chennai',8036934757);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(3,'sakthi',192221046,'F','IT','C002','2005-02-28','virudhunagar',7904563950);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student value(4,'karthi','192221047','M','AIDS','C003','2004-09-12','sivakasi',8054537906);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from student;
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+| S_no | Stud_name | Stud_reg  | Gender | Stud_dept | Course_no | DOB        | City            | Mobile_no  |
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+|    1 | vishwa    | 192221043 | M      | IT        | C003      | 2004-09-12 | Thiruvannamalai | 9944537890 |
+|    2 | varshika  | 192225002 | F      | AIML      | C005      | 2003-04-07 | chennai         | 8036934757 |
+|    3 | sakthi    | 192221046 | F      | IT        | C002      | 2005-02-28 | virudhunagar    | 7904563950 |
+|    4 | karthi    | 192221047 | M      | AIDS      | C003      | 2004-09-12 | sivakasi        | 8054537906 |
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> create procedure student()
+    -> select *from student;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call student();
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+| S_no | Stud_name | Stud_reg  | Gender | Stud_dept | Course_no | DOB        | City            | Mobile_no  |
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+|    1 | vishwa    | 192221043 | M      | IT        | C003      | 2004-09-12 | Thiruvannamalai | 9944537890 |
+|    2 | varshika  | 192225002 | F      | AIML      | C005      | 2003-04-07 | chennai         | 8036934757 |
+|    3 | sakthi    | 192221046 | F      | IT        | C002      | 2005-02-28 | virudhunagar    | 7904563950 |
+|    4 | karthi    | 192221047 | M      | AIDS      | C003      | 2004-09-12 | sivakasi        | 8054537906 |
++------+-----------+-----------+--------+-----------+-----------+------------+-----------------+------------+
+4 rows in set (0.01 sec)
+
+
+#Customer level:
+
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE GET_CUSTOMER_LEVEL2(
+    ->  IN CUSTOMER_NO INT,
+    ->  OUT CUSTOMER_LEVEL VARCHAR(14))
+    -> BEGIN
+    ->  DECLARE CREDIT_LIM INT;
+    ->     DECLARE CUST_LEVEL VARCHAR(14);
+    ->  SET CUST_LEVEL = ' ';
+    ->     SELECT CREDIT_LIMIT INTO CREDIT_LIM
+    ->     FROM CUSTOMER
+    ->     WHERE CUSTOMER_NO = CUSTOMER.CUST_NO;
+    ->
+    ->     IF CREDIT_LIM > 50000 THEN
+    ->          SET CUSTOMER_LEVEL = 'PLATINUM';
+    ->  ELSEIF (CREDIT_LIM <= 50000 AND CREDIT_LIM >= 10000) THEN
+    ->          SET CUSTOMER_LEVEL = 'GOLD';
+    ->  ELSEIF CREDIT_LIM < 10000 THEN
+    ->          SET CUSTOMER_LEVEL = 'SILVER';
+    ->  END IF;
+    ->
+    -> END; //
+Query OK, 0 rows affected (0.04 sec)
+
+
+mysql> DELIMITER ;
+mysql> CALL GET_CUSTOMER_LEVEL2(1003, @CUSTOMER_LEVEL);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT @CUSTOMER_LEVEL AS FINAL;
++-------+
+| FINAL |
++-------+
+| GOLD  |
++-------+
+1 row in set (0.00 sec)
