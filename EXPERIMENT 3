@@ -1,0 +1,244 @@
+
+#Create table with our data:
+
+mysql> create database student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student(S_no int(1),Name varchar(15),Reg_no int(10),Dept char(15),Age int(2),DOB int(5),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Name      | varchar(15) | YES  |     | NULL    |       |
+| Reg_no    | int(10)     | YES  |     | NULL    |       |
+| Dept      | char(15)    | YES  |     | NULL    |       |
+| Age       | int(2)      | YES  |     | NULL    |       |
+| DOB       | int(5)      | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into  student value(1,'vishwa',192221043,'IT',18,2004,99408296757);
+Query OK, 1 row affected (0.01 sec)
+mysql> insert into student value(2,'madhan',192221042,'IT',17,2005,8524063594);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into student value(3,'varshika',192225002,'AIML',19,2003,8630873016);
+Query OK, 1 row affected (0.00 sec)
+mysql>  insert into student value(4,'Rohan',192224082,'AGRI',18,2004,9445645479);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from student;
++------+----------+-----------+------+------+------+------------+
+| S_no | Name     | Reg_no    | Dept | Age  | DOB  | Mobile_no  |
++------+----------+-----------+------+------+------+------------+
+|    1 | vishwa   | 192221043 | IT   |   18 | 2004 | 9940879257 |
+|    2 | madhan   | 192221042 | IT   |   17 | 2005 | 8524056794 |
+|    3 | varshika | 192225002 | AIML |   19 | 2003 | 8610698016 |
+|    4 | Rohan    | 192224082 | AGRI |   18 | 2004 | 9445666779 |
++------+----------+-----------+------+------+------+------------+
+4 rows in set (0.00 sec)
+
+
+#Update the Reg_no of student:
+
+
+mysql> update student set Reg_no=191711342 where Name='Rohan';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++------+----------+-----------+------+------+------+------------+
+| S_no | Name     | Reg_no    | Dept | Age  | DOB  | Mobile_no  |
++------+----------+-----------+------+------+------+------------+
+|    1 | vishwa   | 192221043 | IT   |   18 | 2004 | 9940809857 |
+|    2 | madhan   | 192221042 | IT   |   17 | 2005 | 8524069894 |
+|    3 | varshika | 192225002 | AIML |   19 | 2003 | 8610677816 |
+|    4 | Rohan    | 191711342 | AGRI |   18 | 2004 | 9445667999 |
++------+----------+-----------+------+------+------+------------+
+
+
+#Delete the Record:
+
+
+mysql> create database faculty;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| faculty            |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> create table faculty(S_no int(1),Fact_name varchar(15),Fact_id varchar(15),Dept char(15),Age int(2),DOB int(5),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc faculty;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Fact_name | varchar(15) | YES  |     | NULL    |       |
+| Fact_id   | varchar(15) | YES  |     | NULL    |       |
+| Dept      | char(15)    | YES  |     | NULL    |       |
+| Age       | int(2)      | YES  |     | NULL    |       |
+| DOB       | int(5)      | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql> insert into faculty value(1,'kavitha',1952737289,'PHYSICS',23,2000,8056030576);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into faculty value(2,'Lokesh',1956482479,'ETHICS',28,1994,6381786811);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into faculty value(3,'Murphy',1958348393,'CHEMISTRY',30,1992,9597100453);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into faculty value(4,'Seetha',1927845490,'MATHS',36,1886,9944353361);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from faculty;
++------+-----------+------------+-----------+------+------+------------+
+| S_no | Fact_name | Fact_id    | Dept      | Age  | DOB  | Mobile_no  |
++------+-----------+------------+-----------+------+------+------------+
+|    1 | kavitha   | 1952737289 | PHYSICS   |   23 | 2000 | 8056030576 |
+|    2 | Lokesh    | 1956482479 | ETHICS    |   28 | 1994 | 6381786811 |
+|    3 | Murphy    | 1958348393 | CHEMISTRY |   30 | 1992 | 9597100453 |
+|    4 | Seetha    | 1927845490 | MATHS     |   36 | 1886 | 9944353361 |
++------+-----------+------------+-----------+------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from faculty where Fact_name='Murphy';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from faculty;
++------+-----------+------------+---------+------+------+------------+
+| S_no | Fact_name | Fact_id    | Dept    | Age  | DOB  | Mobile_no  |
++------+-----------+------------+---------+------+------+------------+
+|    1 | kavitha   | 1952737289 | PHYSICS |   23 | 2000 | 8056030576 |
+|    2 | Lokesh    | 1956482479 | ETHICS  |   28 | 1994 | 6381786811 |
+|    4 | Seetha    | 1927845490 | MATHS   |   36 | 1886 | 9944353361 |
++------+-----------+------------+---------+------+------+------------+
+3 rows in set (0.00 sec)
+
+
+#Modify the data:
+
+
+mysql> create database faculty1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| faculty            |
+| faculty1           |
+| mysql              |
+| performance_schema |
+| student            |
+| test               |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> use faculty1;
+Database changed
+mysql> use faculty1;
+Database changed
+mysql>  create table faculty1(S_no int(1),Fact_name varchar(15),Fact_id varchar(15),Dept char(15),Age int(3),DOB int(15),Mobile_no varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty1;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| S_no      | int(1)      | YES  |     | NULL    |       |
+| Fact_name | varchar(15) | YES  |     | NULL    |       |
+| Fact_id   | varchar(15) | YES  |     | NULL    |       |
+| Dept      | char(15)    | YES  |     | NULL    |       |
+| Age       | int(3)      | YES  |     | NULL    |       |
+| DOB       | int(15)     | YES  |     | NULL    |       |
+| Mobile_no | varchar(15) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+mysql>  insert into faculty1 value(1,'kavitha',1952737289,'PHYSICS',23,2000,8056030576);
+Query OK, 1 row affected (0.00 sec)
+mysql> insert into faculty1 value(2,'Lokesh',1956482479,'ETHICS',28,1994,6381786811);
+Query OK, 1 row affected (0.00 sec)
+mysql>  insert into faculty1 value(3,'Murphy',1958348393,'CHEMISTRY',30,1992,9597100453);
+Query OK, 1 row affected (0.00 sec)
+mysql>  insert into faculty1 value(4,'Seetha',1927845490,'MATHS',36,1886,9944353361);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from faculty1;
++------+-----------+------------+-----------+------+------+------------+
+| S_no | Fact_name | Fact_id    | Dept      | Age  | DOB  | Mobile_no  |
++------+-----------+------------+-----------+------+------+------------+
+|    1 | kavitha   | 1952737289 | PHYSICS   |   23 | 2000 | 8056030576 |
+|    2 | Lokesh    | 1956482479 | ETHICS    |   28 | 1994 | 6381786811 |
+|    3 | Murphy    | 1958348393 | CHEMISTRY |   30 | 1992 | 9597100453 |
+|    4 | Seetha    | 1927845490 | MATHS     |   36 | 1886 | 9944353361 |
++------+-----------+------------+-----------+------+------+------------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE faculty1
+    -> SET Fact_name='Murphy',
+    -> DOB=1983
+    -> WHERE S_no=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from faculty1;
++------+-----------+------------+-----------+------+------+------------+
+| S_no | Fact_name | Fact_id    | Dept      | Age  | DOB  | Mobile_no  |
++------+-----------+------------+-----------+------+------+------------+
+|    1 | kavitha   | 1952737289 | PHYSICS   |   23 | 2000 | 8056030576 |
+|    2 | Lokesh    | 1956482479 | ETHICS    |   28 | 1994 | 6381786811 |
+|    3 | Murphy    | 1958348393 | CHEMISTRY |   30 | 1983 | 9597100453 |
+|    4 | Seetha    | 1927845490 | MATHS     |   36 | 1886 | 9944353361 |
++------+-----------+------------+-----------+------+------+------------+
+4 rows in set (0.00 sec)
+
+
+#Remove faculty above age 65 years:
+
+
+mysql>  DELETE FROM faculty1 WHERE Age > 65;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select *from faculty1;
++------+-----------+------------+-----------+------+------+------------+
+| S_no | Fact_name | Fact_id    | Dept      | Age  | DOB  | Mobile_no  |
++------+-----------+------------+-----------+------+------+------------+
+|    1 | kavitha   | 1952737289 | PHYSICS   |   23 | 2000 | 8056030576 |
+|    2 | Lokesh    | 1956482479 | ETHICS    |   28 | 1994 | 6381786811 |
+|    3 | Murphy    | 1958348393 | CHEMISTRY |   30 | 1983 | 9597100453 |
+|    4 | Seetha    | 1927845490 | MATHS     |   36 | 1886 | 9944353361 |
++------+-----------+------------+-----------+------+------+------------+
+4 rows in set (0.00 sec)
